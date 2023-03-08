@@ -1,6 +1,7 @@
 from datetime import datetime
 import sys
 import json
+from pathlib import Path
 
 
 def get_all_operations(file_path):
@@ -64,10 +65,11 @@ def print_last_operations(operations_with_hidden_num):
 
 
 def main():
-    operations_list = get_all_operations(r'C:\Users\Great\Desktop\CP3\CP3\operations.json')
+
+    abspath_operations = Path.joinpath(Path(__file__).parent.parent, "operations.json")
+    operations_list = get_all_operations(abspath_operations)
     list_of_five_operations = find_last_operations(operations_list)
     hidden_operations = hide_numbers(list_of_five_operations)
-    print(hidden_operations)
     print_last_operations(hidden_operations)
 
 
