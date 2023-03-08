@@ -1,14 +1,15 @@
 import pytest
-
 from utils import main
+from pathlib import Path
+
+abspath_operations = Path.joinpath(Path(__file__).parent.parent, "operations.json")
 
 
 def test_get_all_operations():
-
-    assert main.get_all_operations(r'C:\Users\Great\Desktop\CP3\CP3\operations.json')
+    assert main.get_all_operations(abspath_operations)
     with pytest.raises(SystemExit):
-        assert main.get_all_operations(r'C:\Users\Great\Desktop\CP3\CP3\operation.json')
-    assert isinstance(main.get_all_operations(r'C:\Users\Great\Desktop\CP3\CP3\operations.json'), list)
+        assert main.get_all_operations("")
+    assert isinstance(main.get_all_operations(abspath_operations), list)
 
 
 def test_find_last_operations():
